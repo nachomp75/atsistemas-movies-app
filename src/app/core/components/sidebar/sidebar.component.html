@@ -1,0 +1,52 @@
+<div
+  *ngIf="(stateService.isMobile$ | async) === false; else mobileMenu"
+  class="sidebar"
+>
+  <a class="sidebar__navlink" routerLink="/movies">
+    <i class="fa-solid fa-clapperboard"></i>
+    <span>{{ 'core.sidebar.movies' | translate }}</span>
+  </a>
+  <hr />
+  <a class="sidebar__navlink" routerLink="/actors">
+    <i class="fa-solid fa-masks-theater"></i>
+    <span>{{ 'core.sidebar.actors' | translate }}</span>
+  </a>
+  <hr />
+  <a class="sidebar__navlink" routerLink="/companies">
+    <i class="fa-solid fa-building-columns"></i>
+    <span>{{ 'core.sidebar.companies' | translate }}</span>
+  </a>
+</div>
+
+<ng-template #mobileMenu>
+  <div
+    *ngIf="stateService.sidebarOpened$ | async"
+    class="sidebar-mobile__overlay"
+    (click)="handleCloseSideBar($event)"
+  >
+    <div class="sidebar-mobile__container">
+      <div
+        class="sidebar-mobile__close"
+        (click)="stateService.sidebarOpened = false"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="sidebar-mobile__navigation">
+        <a class="sidebar-mobile__navlink" routerLink="/movies">
+          <i class="fa-solid fa-clapperboard"></i>
+          <span>{{ 'core.sidebar.movies' | translate }}</span>
+        </a>
+        <hr />
+        <a class="sidebar-mobile__navlink" routerLink="/actors">
+          <i class="fa-solid fa-masks-theater"></i>
+          <span>{{ 'core.sidebar.actors' | translate }}</span>
+        </a>
+        <hr />
+        <a class="sidebar-mobile__navlink" routerLink="/companies">
+          <i class="fa-solid fa-building-columns"></i>
+          <span>{{ 'core.sidebar.companies' | translate }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,23 @@
+@import '../../../../styles/styles.scss';
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  &__menu > svg {
+    height: 25px;
+  }
+  &__spacer {
+    flex: 1;
+  }
+  * {
+    margin: 0 8px;
+  }
+}

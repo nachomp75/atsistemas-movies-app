@@ -1,0 +1,12 @@
+{
+  "core": {
+    "sidebar": {
+      "movies": "Películas",
+      "actors": "Actores",
+      "companies": "Estudios"
+    },
+    "footer": {
+      "author": "Autor: "
+    }
+  }
+}

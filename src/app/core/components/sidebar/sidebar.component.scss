@@ -1,0 +1,73 @@
+@import '../../../../styles/styles.scss';
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar {
+  border-radius: 10px;
+  background-color: white;
+  position: fixed;
+  top: 50%;
+  left: 20px;
+  transform: translate(0, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: $default-shadow;
+  height: 90%;
+  width: 60px;
+  z-index: 1;
+  &__navlink {
+    margin: 10px 0;
+  }
+  hr {
+    width: 70%;
+  }
+}
+
+.sidebar-mobile {
+  &__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+  &__container {
+    position: relative;
+    background: white;
+    box-sizing: border-box;
+    border-radius: 0 10px 10px 0;
+    width: 240px;
+    height: 100%;
+    box-shadow: $default-shadow;
+    z-index: 2;
+    padding: 15px;
+  }
+  &__close {
+    position: absolute;
+    right: 15px;
+    svg {
+      height: 25px;
+    }
+  }
+  &__navigation {
+    margin-top: 60px;
+    hr {
+      margin: 15px 0;
+    }
+  }
+  &__navlink {
+    svg {
+      width: 20px;
+    }
+    span {
+      margin-left: 15px;
+    }
+  }
+}
