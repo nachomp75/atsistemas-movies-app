@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { NewComponent } from './new.component';
+import { NewRoutingModule } from './new-routing.module';
 
 @NgModule({
   declarations: [NewComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, NewRoutingModule],
 })
 export class NewModule {}

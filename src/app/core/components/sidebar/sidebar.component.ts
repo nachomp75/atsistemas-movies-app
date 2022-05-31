@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
+import { filter } from 'rxjs';
 
 import { StateService } from '@core/services/state.service';
 
@@ -8,7 +11,13 @@ import { StateService } from '@core/services/state.service';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
-  constructor(public stateService: StateService) {}
+  constructor(private router: Router, public stateService: StateService) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        this.stateService.sidebarOpened = false;
+      });
+  }
 
   handleCloseSideBar({ target }: MouseEvent) {
     if ((target as Element).className === 'sidebar-mobile__overlay') {

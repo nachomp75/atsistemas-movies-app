@@ -1,3 +1,7 @@
 $primary-color: #1976d2;
 
 $default-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+
+:export {
+  primaryColor: $primary-color;
+}

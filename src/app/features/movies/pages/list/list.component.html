@@ -1,1 +1,7 @@
-<p>list works!</p>
+<div class="movie-list">
+  <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+  <app-circle-button
+    icon="fa-solid fa-plus"
+    (click)="handleNewMovie()"
+  ></app-circle-button>
+</div>

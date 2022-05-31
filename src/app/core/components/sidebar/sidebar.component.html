@@ -4,17 +4,23 @@
 >
   <a class="sidebar__navlink" routerLink="/movies">
     <i class="fa-solid fa-clapperboard"></i>
-    <span>{{ 'core.sidebar.movies' | translate }}</span>
+    <span class="sidebar__tooltip">{{
+      'core.sidebar.movies' | translate
+    }}</span>
   </a>
   <hr />
   <a class="sidebar__navlink" routerLink="/actors">
     <i class="fa-solid fa-masks-theater"></i>
-    <span>{{ 'core.sidebar.actors' | translate }}</span>
+    <span class="sidebar__tooltip">{{
+      'core.sidebar.actors' | translate
+    }}</span>
   </a>
   <hr />
   <a class="sidebar__navlink" routerLink="/companies">
     <i class="fa-solid fa-building-columns"></i>
-    <span>{{ 'core.sidebar.companies' | translate }}</span>
+    <span class="sidebar__tooltip">{{
+      'core.sidebar.companies' | translate
+    }}</span>
   </a>
 </div>
 

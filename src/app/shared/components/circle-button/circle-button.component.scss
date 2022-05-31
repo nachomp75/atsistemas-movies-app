@@ -1,0 +1,19 @@
+@import '../../../../styles/styles.scss';
+
+button {
+  border: none;
+  border-radius: 50%;
+  box-shadow: $default-shadow;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  transition: all 0.2s ease-in-out;
+  svg {
+    height: 30px;
+    color: white;
+  }
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
