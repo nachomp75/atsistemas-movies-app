@@ -3,7 +3,7 @@
 .new-movie {
   border-radius: 6px;
   box-shadow: $default-shadow;
-  max-width: 500px;
+  max-width: 450px;
   margin: auto;
   padding: 30px;
   &__title {
@@ -22,5 +22,13 @@
       justify-content: space-between;
       margin-top: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .new-movie {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
   }
 }

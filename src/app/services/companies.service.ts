@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-import { Company } from '@app/features/movies/types/Company';
+import { Company } from '@app/types/Company';
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -16,5 +16,11 @@ export class CompaniesService {
 
   getCompanies(): Observable<Company[]> {
     return this.http.get<Company[]>(this.path);
+  }
+
+  getCompanyByMovieId(id: number): Observable<Company> {
+    return this.http
+      .get<Company[]>(`${this.path}?movies_like=${id}`)
+      .pipe(map(([company]) => company));
   }
 }

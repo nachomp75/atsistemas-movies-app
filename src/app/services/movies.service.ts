@@ -6,7 +6,7 @@ import { catchError, Observable, of } from 'rxjs';
 import Swal from 'sweetalert2';
 
 import { environment } from 'environments/environment';
-import { Movie } from '../features/movies/types/Movie';
+import { Movie } from '../types/Movie';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +34,12 @@ export class MoviesService {
     };
   }
 
+  getMovieById(id: number): Observable<Movie> {
+    return this.http
+      .get<Movie>(`${this.path}/${id}`)
+      .pipe(catchError(this.handleError<Movie>(true)));
+  }
+
   getAllMovies(): Observable<Movie[]> {
     return this.http
       .get<Movie[]>(this.path)
@@ -52,6 +58,12 @@ export class MoviesService {
   createMovie(movie: Movie): Observable<Movie> {
     return this.http
       .post<Movie>(this.path, movie)
+      .pipe(catchError(this.handleError<Movie>(true)));
+  }
+
+  removeMovie(id: number): Observable<Movie> {
+    return this.http
+      .delete<Movie>(`${this.path}/${id}`)
       .pipe(catchError(this.handleError<Movie>(true)));
   }
 }

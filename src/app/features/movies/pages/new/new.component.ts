@@ -8,11 +8,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { exhaustMap, map, Observable, Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 
-import { SelectOption } from '../../types/SelectOption';
-import { ActorsService } from '../../../../services/actors.service';
-import { CompaniesService } from '../../../../services/companies.service';
-import { MoviesService } from '../../../../services/movies.service';
-import { Movie } from '../../types/Movie';
+import { SelectOption } from '@app/types/SelectOption';
+import { ActorsService } from '@app/services/actors.service';
+import { CompaniesService } from '@app/services/companies.service';
+import { MoviesService } from '@app/services/movies.service';
+import { Movie } from '@app/types/Movie';
 
 @Component({
   selector: 'app-new',

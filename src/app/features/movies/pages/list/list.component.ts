@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 
 import { MoviesService } from '../../../../services/movies.service';
-import { Movie } from '../../types/Movie';
+import { Movie } from '../../../../types/Movie';
 
 @Component({
   selector: 'app-list',

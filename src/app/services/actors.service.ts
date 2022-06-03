@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { Actor } from '@app/features/movies/types/Actor';
+import { Actor } from '@app/types/Actor';
 import { environment } from 'environments/environment';
 
 @Injectable({
@@ -16,5 +16,9 @@ export class ActorsService {
 
   getActors(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.path);
+  }
+
+  getActorsByMovieId(id: number): Observable<Actor[]> {
+    return this.http.get<Actor[]>(`${this.path}?movies_like=${id}`);
   }
 }
