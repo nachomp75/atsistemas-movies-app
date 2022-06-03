@@ -1,1 +1,107 @@
-<p>new works!</p>
+<div class="new-movie">
+  <app-back-button></app-back-button>
+  <p class="new-movie__title">{{ 'movies.new.title' | translate }}</p>
+  <form
+    class="new-movie__form"
+    [formGroup]="newMovieForm"
+    (ngSubmit)="handleSubmitNewMovie()"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="{{ 'movies.new.form.title' | translate }}"
+        required
+        formControlName="title"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="{{ 'movies.new.form.poster' | translate }}"
+        required
+        formControlName="poster"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-chip-list">
+      <mat-label>{{ 'movies.new.form.genre' | translate }}</mat-label>
+      <mat-chip-list #chipList aria-label="Genre selection">
+        <mat-chip *ngFor="let genre of genres" (removed)="remove(genre)">
+          {{ genre }}
+          <button matChipRemove>
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </mat-chip>
+        <input
+          placeholder="Nuevo género..."
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+          formControlName="genre"
+        />
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'movies.new.form.actors' | translate }}</mat-label>
+      <mat-select multiple formControlName="actors">
+        <mat-option *ngFor="let actor of actors$ | async" [value]="actor.value">
+          {{ actor.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>{{ 'movies.new.form.company' | translate }}</mat-label>
+      <mat-select formControlName="company">
+        <mat-option
+          *ngFor="let company of companies$ | async"
+          [value]="company.value"
+          >{{ company.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        min="0"
+        type="number"
+        placeholder="{{ 'movies.new.form.year' | translate }}"
+        required
+        formControlName="year"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        min="0"
+        type="number"
+        placeholder="{{ 'movies.new.form.duration' | translate }}"
+        required
+        formControlName="duration"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        min="1"
+        max="10"
+        type="number"
+        placeholder="{{ 'movies.new.form.rating' | translate }}"
+        formControlName="imdbRating"
+      />
+    </mat-form-field>
+
+    <div class="new-movie__form__buttons">
+      <button mat-raised-button color="warn" (click)="handleResetForm($event)">
+        {{ 'movies.new.form.buttons.clean' | translate }}
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!newMovieForm.valid"
+      >
+        {{ 'movies.new.form.buttons.save' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

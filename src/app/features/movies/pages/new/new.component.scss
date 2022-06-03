@@ -1,0 +1,26 @@
+@import '../../../../../styles/styles.scss';
+
+.new-movie {
+  border-radius: 6px;
+  box-shadow: $default-shadow;
+  max-width: 500px;
+  margin: auto;
+  padding: 30px;
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+  }
+  &__form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+  }
+}

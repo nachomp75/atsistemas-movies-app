@@ -1,7 +1,27 @@
-<div class="movie-list">
-  <app-movie-card *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
-  <app-circle-button
-    icon="fa-solid fa-plus"
-    (click)="handleNewMovie()"
-  ></app-circle-button>
-</div>
+<mat-form-field class="movie-search">
+  <input
+    #searchBox
+    matInput
+    (input)="search(searchBox.value)"
+    placeholder="{{ 'movies.list.search_placeholder' | translate }}"
+  />
+</mat-form-field>
+<mat-spinner *ngIf="loading" class="movie-spinner"></mat-spinner>
+<ng-container *ngIf="movies$ | async as movies">
+  <ng-container *ngIf="!loading">
+    <div *ngIf="movies.length > 0" class="movie-list">
+      <app-movie-card
+        *ngFor="let movie of movies"
+        [movie]="movie"
+      ></app-movie-card>
+    </div>
+    <p *ngIf="movies.length === 0" class="no-results">
+      {{ 'movies.list.not_found' | translate }}
+    </p>
+  </ng-container>
+</ng-container>
+<app-circle-button
+  class="new-button"
+  icon="fa-solid fa-plus"
+  (click)="handleNewMovie()"
+></app-circle-button>

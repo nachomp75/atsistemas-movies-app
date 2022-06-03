@@ -8,5 +8,33 @@
     "footer": {
       "author": "Autor: "
     }
+  },
+  "movies": {
+    "list": {
+      "title": "Buscador",
+      "search_placeholder": "Busca películas por título",
+      "not_found": "No se encontraron películas."
+    },
+    "new": {
+      "title": "Nueva película",
+      "form": {
+        "title": "Título",
+        "poster": "Póster (URL)",
+        "genre": "Géneros",
+        "actors": "Actores",
+        "company": "Estudio",
+        "year": "Año",
+        "duration": "Duración (en minutos)",
+        "rating": "Puntuación",
+        "buttons": {
+          "save": "Guardar",
+          "clean": "Limpiar"
+        }
+      }
+    }
+  },
+  "swal": {
+    "unexpected_error": "Ocurrió un error inesperado.",
+    "success": "Operación realizada con éxito."
   }
 }
