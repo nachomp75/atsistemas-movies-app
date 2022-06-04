@@ -11,7 +11,7 @@
   <ng-container *ngIf="!loading">
     <div *ngIf="movies.length > 0" class="movie-list">
       <app-movie-card
-        *ngFor="let movie of movies"
+        *ngFor="let movie of movies; trackBy: trackByMovieId"
         [movie]="movie"
       ></app-movie-card>
     </div>

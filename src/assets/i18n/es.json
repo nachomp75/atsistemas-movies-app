@@ -39,6 +39,9 @@
       "genre": "Géneros"
     }
   },
+  "shared": {
+    "comming_soon": "Disponible próximamente!"
+  },
   "swal": {
     "unexpected_error": "Ocurrió un error inesperado.",
     "success": "Operación realizada con éxito."

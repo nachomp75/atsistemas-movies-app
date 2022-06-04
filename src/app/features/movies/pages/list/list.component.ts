@@ -50,4 +50,8 @@ export class ListComponent implements OnInit, AfterViewInit {
   handleNewMovie() {
     this.router.navigate(['/movies', 'new']);
   }
+
+  trackByMovieId(_index: number, movie: Movie): number {
+    return movie.id;
+  }
 }

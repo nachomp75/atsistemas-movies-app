@@ -35,9 +35,12 @@ a {
     top: -5px;
     left: 25px;
     background: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
   }
   &__navlink:hover &__tooltip {
     visibility: visible;
+    opacity: 1;
   }
   hr {
     width: 70%;

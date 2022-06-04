@@ -1,9 +1,31 @@
 <div class="detail-movie">
   <app-back-button></app-back-button>
-  <mat-spinner
-    *ngIf="loadingMovie || loadingActors || loadingCompany"
-    class="detail-movie__spinner"
-  ></mat-spinner>
+
+  <ng-container *ngIf="loadingMovie || loadingActors || loadingCompany">
+    <div class="detail-movie__loader">
+      <ngx-skeleton-loader
+        appearance="line"
+        animation="progress"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        animation="progress"
+        [theme]="{
+          height: '300px'
+        }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+    </div>
+    <ngx-skeleton-loader animation="progress"></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      animation="progress"
+      [theme]="{
+        borderRadius: '30px',
+        width: '100px',
+        height: '30px'
+      }"
+    ></ngx-skeleton-loader>
+  </ng-container>
+
   <ng-container
     *ngIf="{
       movie: movie$ | async,
@@ -11,50 +33,52 @@
       company: company$ | async
     } as result"
   >
-    <ng-container *ngIf="result.movie as movie">
-      <p class="detail-movie__title">{{ movie.title }} ({{ movie.year }})</p>
-      <figure class="detail-movie__poster">
-        <img [src]="movie.poster" />
-        <figcaption class="detail-movie__poster-caption">
-          <div>
-            <strong>{{ 'movies.detail.rating' | translate }}</strong>
-            <p>{{ movie.imdbRating }}</p>
-          </div>
-          <div>
-            <strong>{{ 'movies.detail.duration' | translate }}</strong>
-            <p>{{ movie.duration | movieDuration }}</p>
-          </div>
-        </figcaption>
-      </figure>
+    <ng-container *ngIf="!(loadingMovie || loadingActors || loadingCompany)">
+      <ng-container *ngIf="result.movie as movie">
+        <p class="detail-movie__title">{{ movie.title }} ({{ movie.year }})</p>
+        <figure class="detail-movie__poster">
+          <img [src]="movie.poster" />
+          <figcaption class="detail-movie__poster-caption">
+            <div>
+              <strong>{{ 'movies.detail.rating' | translate }}</strong>
+              <p>{{ movie.imdbRating }}</p>
+            </div>
+            <div>
+              <strong>{{ 'movies.detail.duration' | translate }}</strong>
+              <p>{{ movie.duration | movieDuration }}</p>
+            </div>
+          </figcaption>
+        </figure>
+      </ng-container>
+      <div *ngIf="result.actors as actors" class="detail-movie__section">
+        <span>{{ 'movies.detail.actors' | translate }}</span>
+        <hr />
+        <mat-chip-list>
+          <mat-chip *ngFor="let actor of actors">
+            {{ actor.first_name }} {{ actor.last_name }}
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+      <div *ngIf="result.company as company" class="detail-movie__section">
+        <span>{{ 'movies.detail.company' | translate }}</span>
+        <hr />
+        <mat-chip-list>
+          <mat-chip>{{ company.name }}</mat-chip>
+        </mat-chip-list>
+      </div>
+      <div *ngIf="result.movie as movie" class="detail-movie__section">
+        <span>{{ 'movies.detail.genre' | translate }}</span>
+        <hr />
+        <mat-chip-list>
+          <mat-chip *ngFor="let genre of movie.genre">{{ genre }}</mat-chip>
+        </mat-chip-list>
+        <app-circle-button
+          class="detail-movie__remove-button"
+          color="red"
+          icon="fa-solid fa-trash"
+          (click)="handleRemoveMovie(result.movie.id)"
+        ></app-circle-button>
+      </div>
     </ng-container>
-    <div *ngIf="result.actors as actors" class="detail-movie__section">
-      <span>{{ 'movies.detail.actors' | translate }}</span>
-      <hr />
-      <mat-chip-list>
-        <mat-chip *ngFor="let actor of actors">
-          {{ actor.first_name }} {{ actor.last_name }}
-        </mat-chip>
-      </mat-chip-list>
-    </div>
-    <div *ngIf="result.company as company" class="detail-movie__section">
-      <span>{{ 'movies.detail.company' | translate }}</span>
-      <hr />
-      <mat-chip-list>
-        <mat-chip>{{ company.name }}</mat-chip>
-      </mat-chip-list>
-    </div>
-    <div *ngIf="result.movie as movie" class="detail-movie__section">
-      <span>{{ 'movies.detail.genre' | translate }}</span>
-      <hr />
-      <mat-chip-list>
-        <mat-chip *ngFor="let genre of movie.genre">{{ genre }}</mat-chip>
-      </mat-chip-list>
-      <app-circle-button
-        class="detail-movie__remove-button"
-        color="red"
-        icon="fa-solid fa-trash"
-        (click)="handleRemoveMovie(result.movie.id)"
-      ></app-circle-button>
-    </div>
   </ng-container>
 </div>

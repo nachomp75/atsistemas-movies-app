@@ -8,11 +8,13 @@ const routes: Routes = [
       import('@features/movies/pages/list/list.module').then(
         (m) => m.ListModule
       ),
+    data: { animation: 'ListPage' },
   },
   {
     path: 'new',
     loadChildren: () =>
       import('@features/movies/pages/new/new.module').then((m) => m.NewModule),
+    data: { animation: 'NewPage' },
   },
   {
     path: 'detail/:id',
@@ -20,6 +22,7 @@ const routes: Routes = [
       import('@features/movies/pages/detail/detail.module').then(
         (m) => m.DetailModule
       ),
+    data: { animation: 'DetailPage' },
   },
   {
     path: '**',
